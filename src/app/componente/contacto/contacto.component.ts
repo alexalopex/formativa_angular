@@ -8,25 +8,29 @@ import { FormBuilder, FormGroup} from '@angular/forms';
 })
 export class ContactoComponent implements OnInit {
   formularioForm: FormGroup;
+  datos_formulario: any;
 
   constructor(private formBuilder: FormBuilder) {
+  
     this.formularioForm = this.formBuilder.group({
       nombre: '',
       apellido: '',
       correo: '',
       telefono: '',
-      mensaje: '', 
+      mensaje: '',
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     console.log("Ejecutando el ngOnInit");
   }
 
-  enviarDatos() {
+  enviarDatos(): void {
     if (this.formularioForm.valid) {
-      let datos_formulario = this.formularioForm.value;
-      console.log('Datos del formulario:', datos_formulario);
+      this.datos_formulario = this.formularioForm.value;
+      console.log('Datos del formulario:', this.datos_formulario);
+    } else {
+      console.log('Formulario no válido');
+    }
   }
-}
 }

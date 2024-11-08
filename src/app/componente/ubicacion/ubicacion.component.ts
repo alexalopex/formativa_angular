@@ -7,15 +7,17 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrl: './ubicacion.component.css'
 })
 export class UbicacionComponent implements OnInit {
-  formularioForm: FormGroup;
+  formularioForm: FormGroup; 
+  datos_formulario: any = null;
 
   constructor(private formBuilder: FormBuilder) {
+
     this.formularioForm = this.formBuilder.group({
-      nombre: '',
+      nombre: '', 
       apellido: '',
-      correo: '',
+      correo: '', 
       telefono: '',
-      mensaje: '', 
+      mensaje: '',  
     });
   }
 
@@ -25,8 +27,16 @@ export class UbicacionComponent implements OnInit {
 
   enviarDatos() {
     if (this.formularioForm.valid) {
-      let datos_formulario = this.formularioForm.value;
-      console.log('Datos del formulario:', datos_formulario);
+    
+      this.datos_formulario = this.formularioForm.value;
+      
+     
+      console.log('Datos formulario:', this.datos_formulario);
+      
+    
+      this.formularioForm.reset();
+    } else {
+      console.log('Formulario no válido');
+    }
   }
-}
 }
